@@ -1,0 +1,178 @@
+@use 'colors' as c;
+@use 'fonts' as f;
+@use 'mixins' as m;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: f.$text-font;
+}
+
+body {
+  background-image: url(../img/todo-background.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  @include m.flex(center, center, column);
+}
+
+.container {
+  @include m.flex(flex-start, center, column);
+  box-shadow: 0 5px 5px 10px rgba(5, 0, 0, 0.3);
+  width: 22rem;
+  height: 95vh;
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 1.7rem;
+  font-family: f.$header-font;
+  color: c.$text-color;
+}
+
+header,
+form {
+  min-height: 10vh;
+  @include m.flex(center, center, row);
+}
+
+form input,
+form button {
+  padding: 0.4rem;
+  font-size: 1rem;
+  border: 1px solid c.$secondary-color;
+  border-radius: 10px;
+  background-color: #fff;
+  outline: none;
+}
+
+form input {
+  color: c.$text-color;
+  width: 55%;
+}
+
+form input::placeholder {
+  color: c.$text-color;
+}
+
+form button {
+  color: c.$secondary-color;
+  background-color: c.$button-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: c.$secondary-color;
+    color: c.$button-color;
+  }
+}
+
+.list-container {
+  @include m.flex(center, flex-start, row);
+  width: 100%;
+  height: 100%;
+}
+
+.todo-items {
+  list-style: none;
+  min-width: 85%;
+}
+
+.todo {
+  @include m.flex(space-between, center, row);
+  margin: 0.5rem;
+  background: #ffffff;
+  color: c.$text-color;
+  font-size: 1.2rem;
+  transition: all 0.6s ease;
+}
+
+.todo li {
+  flex: 1;
+}
+
+.todo-item {
+  padding: 0 0.5rem;
+}
+
+.complete-btn,
+.delete-btn {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid c.$secondary-color;
+  color: c.$secondary-color;
+  background-color: c.$button-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn {
+  background-color: c.$text-color;
+
+  &:hover {
+    color: c.$button-color;
+    background-color: c.$secondary-color;
+  }
+}
+
+.complete-btn:hover {
+  background-color: c.$secondary-color;
+  color: c.$button-color;
+}
+
+.fa-trash-can,
+.fa-circle-check {
+  pointer-events: none;
+}
+
+.completed {
+  color: c.$secondary-color;
+  background-color: c.$background-color;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.fall {
+  transform: translateY(10rem) rotateZ(35deg);
+  opacity: 0;
+}
+
+select {
+  appearance: hidden;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  width: 6.5rem;
+  padding: 0.5rem 0;
+  color: c.$text-color;
+  border-radius: 10px;
+  border: 1px solid c.$secondary-color;
+}
+
+.select {
+  margin: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  border-radius: 10px;
+  background-color: c.$button-color;
+  color: c.$secondary-color;
+  border: 1px solid c.$secondary-color;
+  top: 0;
+  right: 0;
+  padding: 0.4rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.select:hover::after {
+  background-color: c.$secondary-color;
+  color: c.$button-color;
+}
